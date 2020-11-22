@@ -15,6 +15,7 @@
 		5CF422F2256AB52A00CC999E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CF422F0256AB52A00CC999E /* LaunchScreen.storyboard */; };
 		5CF422FB256AC99100CC999E /* ClimaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF422FA256AC99000CC999E /* ClimaManager.swift */; };
 		5CF422FE256AD8F300CC999E /* ClimaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF422FD256AD8F300CC999E /* ClimaData.swift */; };
+		5CF42302256AE52400CC999E /* ClimaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF42301256AE52200CC999E /* ClimaModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		5CF422F3256AB52A00CC999E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CF422FA256AC99000CC999E /* ClimaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimaManager.swift; sourceTree = "<group>"; };
 		5CF422FD256AD8F300CC999E /* ClimaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimaData.swift; sourceTree = "<group>"; };
+		5CF42301256AE52200CC999E /* ClimaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimaModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				5CF422F3256AB52A00CC999E /* Info.plist */,
 				5CF422FA256AC99000CC999E /* ClimaManager.swift */,
 				5CF422FD256AD8F300CC999E /* ClimaData.swift */,
+				5CF42301256AE52200CC999E /* ClimaModel.swift */,
 			);
 			path = Clima;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				5CF422E6256AB51E00CC999E /* AppDelegate.swift in Sources */,
 				5CF422E8256AB51E00CC999E /* SceneDelegate.swift in Sources */,
 				5CF422FE256AD8F300CC999E /* ClimaData.swift in Sources */,
+				5CF42302256AE52400CC999E /* ClimaModel.swift in Sources */,
 				5CF422FB256AC99100CC999E /* ClimaManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

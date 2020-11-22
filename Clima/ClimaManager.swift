@@ -7,7 +7,14 @@
 
 import Foundation
 
+protocol ClimaManagerDelegate {
+    
+    func updateWeather(weather: ClimaModel)
+}
+
 struct ClimaManager {
+    
+    var delegate: ClimaManagerDelegate?
     
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=4235256c472d4ca247d440d4529b315a&units=metric&lang=es"
     
@@ -19,13 +26,13 @@ struct ClimaManager {
     }
     
     func realizarSolicitud(urlString: String) {
-        // Crear una url
+        // 1.- Crear una url
         if let url = URL(string: urlString) {
             
-            // Crear el objeto URLSession
+            // 2.- Crear el objeto URLSession
             let session = URLSession(configuration: .default)
             
-            // Asignar una tarea a la sesion
+            // 3.- Asignar una tarea a la sesion
             let task = session.dataTask(with: url) { (data, request, error) in
                 if error != nil {
                     print(error!)
@@ -34,29 +41,36 @@ struct ClimaManager {
                 
                 if let dataSure = data {
                     // Decodificar el objeto JSON de la API
-                    self.parseJSON(weatherData: dataSure)
-                    
+                    if let weather = self.parseJSON(weatherData: dataSure) {
+                        
+                        // Quien sea el delegado cualquier class o structur que implemente el metodo updateWeather
+                        delegate?.updateWeather(weather: weather)
+                    }
                 }
             }
             
-            // Empezar la tarea
+            // 4.- Empezar la tarea
             task.resume()
         }
     }
     
-    func parseJSON(weatherData: Data) {
+    func parseJSON(weatherData: Data) -> ClimaModel? {
         
         let decoder = JSONDecoder()
         do {
             let dataDecoder = try decoder.decode(ClimaData.self, from: weatherData)
-            print(dataDecoder.name)
-            print(dataDecoder.cod)
-            print(dataDecoder.main.temp)
-            print(dataDecoder.main.humidity)
-            print(dataDecoder.weather[0].description)
-            print("Latitud: \(dataDecoder.coord.lat), Longitud: \(dataDecoder.coord.lon)")
+            let id = dataDecoder.weather[0].id
+            let nameCity = dataDecoder.name
+            let description = dataDecoder.weather[0].description
+            let temp = dataDecoder.main.temp
+            
+            // Crear un Objeto de tipo ClimaModelo
+            let weatherObj = ClimaModel(idCondicion: id, nameCity: nameCity, description: description, temp: temp)
+            
+            return weatherObj
         } catch {
             print(error)
+            return nil
         }
     }
 }

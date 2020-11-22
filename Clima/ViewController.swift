@@ -7,9 +7,19 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegate {
     
-    let climaManager = ClimaManager()
+    func updateWeather(weather: ClimaModel) {
+        self.cityLabel.text = weather.description
+        self.tempLabel.text = String(weather.temp)
+        self.weatherImageView.image = UIImage(named: weather.weatherCondicion)
+        
+//        print(weather.description)
+//        print(weather.temp)
+//        print(weather.weatherCondicion)
+    }
+    
+    var weatherManager = ClimaManager()
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tempLabel: UILabel!
@@ -19,6 +29,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Cargamos el delegado del ClimaManager
+        weatherManager.delegate = self
         
         // Implementar el delagado para el teclado
         searchTextField.delegate = self
@@ -36,13 +49,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if searchTextField.text != "" {
             return true
         } else {
-            searchTextField.placeholder = "Escribe la ciduad"
+            searchTextField.placeholder = "Escribe la ciudad"
             return false
         }
     }
-
+    
     @IBAction func ButtonSearch(_ sender: UIButton) {
         cityLabel.text = searchTextField.text
-        climaManager.fechtClima(nameCity: searchTextField.text!)
+        weatherManager.fechtClima(nameCity: searchTextField.text!)
     }
 }

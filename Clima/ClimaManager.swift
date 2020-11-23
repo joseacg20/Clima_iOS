@@ -10,6 +10,8 @@ import Foundation
 protocol ClimaManagerDelegate {
     
     func updateWeather(weather: ClimaModel)
+    
+    func ifError(error: Error)
 }
 
 struct ClimaManager {
@@ -35,6 +37,7 @@ struct ClimaManager {
             // 3.- Asignar una tarea a la sesion
             let task = session.dataTask(with: url) { (data, request, error) in
                 if error != nil {
+                    delegate?.ifError(error: error!)
                     print(error!)
                     return
                 }
@@ -70,6 +73,7 @@ struct ClimaManager {
             return weatherObj
         } catch {
             print(error)
+            delegate?.ifError(error: error)
             return nil
         }
     }

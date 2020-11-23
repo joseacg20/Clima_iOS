@@ -38,6 +38,6 @@ struct ClimaModel {
     
     // Formateamos el decimal del clima para devolver solo uno "26.8"
     var tempFormat: String {
-        return String(format: "%.1f", temp)
+        return String(format: "%.1f", self.temp)
     }
 }

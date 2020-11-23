@@ -9,14 +9,25 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegate {
     
+    func ifError(error: Error){
+        print(error.localizedDescription)
+        
+        DispatchQueue.main.async {
+            self.cityLabel.text = error.localizedDescription
+        }
+    }
+    
     func updateWeather(weather: ClimaModel) {
-        self.cityLabel.text = weather.description
-        self.tempLabel.text = String(weather.temp)
-        self.weatherImageView.image = UIImage(named: weather.weatherCondicion)
         
 //        print(weather.description)
 //        print(weather.temp)
 //        print(weather.weatherCondicion)
+        
+        DispatchQueue.main.async {
+            self.cityLabel.text = weather.description
+            self.tempLabel.text = String(weather.temp)
+            self.weatherImageView.image = UIImage(systemName: weather.weatherCondicion)
+        }
     }
     
     var weatherManager = ClimaManager()
@@ -55,7 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate, ClimaManagerDelegat
     }
     
     @IBAction func ButtonSearch(_ sender: UIButton) {
-        cityLabel.text = searchTextField.text
+//        cityLabel.text = searchTextField.text
         weatherManager.fechtClima(nameCity: searchTextField.text!)
     }
 }

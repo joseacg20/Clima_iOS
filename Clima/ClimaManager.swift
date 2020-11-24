@@ -20,9 +20,16 @@ struct ClimaManager {
     
     let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=4235256c472d4ca247d440d4529b315a&units=metric&lang=es"
     
+    // Consultar con nombre de la ciudad
     func fechtClima(nameCity: String) {
         let urlString = "\(weatherURL)&q=\(nameCity)"
-        print(urlString)
+        
+        realizarSolicitud(urlString: urlString)
+    }
+    
+    // Consultar con la ubicacion
+    func fechtClima(lat: Double, lon: Double) {
+        let urlString = "\(weatherURL)&lat=\(lat)&lon=\(lon)"
         
         realizarSolicitud(urlString: urlString)
     }

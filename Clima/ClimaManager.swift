@@ -73,9 +73,13 @@ struct ClimaManager {
             let nameCity = dataDecoder.name
             let description = dataDecoder.weather[0].description
             let temp = dataDecoder.main.temp
+            let tempMax = dataDecoder.main.temp_max
+            let tempMin = dataDecoder.main.temp_min
+            let wind = dataDecoder.wind.speed
+            let humidity = dataDecoder.main.humidity
             
             // Crear un Objeto de tipo ClimaModelo
-            let weatherObj = ClimaModel(idCondicion: id, nameCity: nameCity, description: description, temp: temp)
+            let weatherObj = ClimaModel(idCondicion: id, nameCity: nameCity, description: description, temp: temp, tempMax: tempMax, tempMin: tempMin, wind: wind, humidity: humidity )
             
             return weatherObj
         } catch {

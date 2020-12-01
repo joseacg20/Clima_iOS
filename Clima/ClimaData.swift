@@ -13,10 +13,13 @@ struct ClimaData: Codable {
     let main: Main
     let weather : [Weather]
     let coord: Coord
+    let wind: Wind
 }
 
 struct Main: Codable {
     let temp: Double
+    let temp_min: Double
+    let temp_max: Double
     let humidity: Int
 }
 
@@ -28,4 +31,8 @@ struct Weather: Codable {
 struct Coord: Codable {
     let lat: Double
     let lon: Double
+}
+
+struct Wind: Codable {
+    let speed: Double
 }

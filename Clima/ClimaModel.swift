@@ -13,6 +13,10 @@ struct ClimaModel {
     let nameCity: String
     let description: String
     let temp: Double
+    let tempMax: Double
+    let tempMin: Double
+    let wind: Double
+    let humidity: Int
     
     // Crear propiedad computada
     var weatherCondicion: String {
@@ -39,5 +43,13 @@ struct ClimaModel {
     // Formateamos el decimal del clima para devolver solo uno "26.8"
     var tempFormat: String {
         return String(format: "%.1f", self.temp)
+    }
+    
+    var tempMaxFormat: String {
+        return String(format: "%.1f", self.tempMax)
+    }
+    
+    var tempMinFormat: String {
+        return String(format: "%.1f", self.tempMin)
     }
 }
